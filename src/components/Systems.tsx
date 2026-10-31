@@ -156,6 +156,7 @@ function ModuleCard({ m, active, onOpen }: { m: Module; active: boolean; onOpen:
 function Screen({ m }: { m: Module }) {
   if (m.id === "haegeum") return <ThresholdViz />;
   if (m.media?.src) return <LoopVideo src={m.media.src} poster={m.media.poster} label={m.media.label} />;
+  if (m.media?.poster) return <img src={m.media.poster} alt={m.media.label} loading="lazy" />;
   return null;
 }
 

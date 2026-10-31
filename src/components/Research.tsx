@@ -4,13 +4,14 @@ import { research, type Source } from "../data";
 import { LoopVideo } from "./Media";
 import { FadeUp, grow, inViewOnce } from "./Reveal";
 import { SOURCE_HELP, SourceBadge, StatusChip } from "./Status";
+import { PlugbotChart } from "./PlugbotChart";
 import { TelemetryChart } from "./TelemetryChart";
 import "../styles/research.css";
 
 const SOURCES: Source[] = ["SIM", "ROLLOUT", "BENCH", "DATASET", "REAL"];
 
 export function Research() {
-  const { rollout, ablation, curves, videos, hypotheses, failures } = research;
+  const { rollout, plugbot, ablation, curves, videos, hypotheses, failures } = research;
   return (
     <section className="section research" id="research">
       <div className="container">
@@ -18,7 +19,7 @@ export function Research() {
           <span className="sec-n">03</span>
           <h2 className="sec-title">
             Research Log
-            <small>실험 기록입니다. 모든 그래프와 수치에 데이터 출처를 붙였습니다. 실물 로봇 측정(REAL)은 아직 없습니다.</small>
+            <small>실험 기록입니다. 모든 그래프와 수치에 데이터 출처를 붙였습니다. 실물 로봇 실험은 아직 없고, 실물 측정(REAL)은 자율주행 트랙 치수뿐입니다.</small>
           </h2>
           <dl className="src-legend">
             {SOURCES.map((s) => (
@@ -44,11 +45,24 @@ export function Research() {
           </div>
         </FadeUp>
 
+        {/* R-02 plugbot */}
+        <FadeUp className="rpanel frame marks">
+          <div className="frame-head">
+            <span>R-02 · {plugbot.title}</span>
+            <SourceBadge src="SIM" />
+          </div>
+          <div className="rpanel-body">
+            <p className="rsetup mono">{plugbot.setup}</p>
+            <PlugbotChart />
+            <p className="rnote">{plugbot.note}</p>
+          </div>
+        </FadeUp>
+
         <div className="rgrid">
-          {/* R-02 ablation */}
+          {/* R-03 ablation */}
           <FadeUp className="rpanel frame">
             <div className="frame-head">
-              <span>R-02 · {ablation.title}</span>
+              <span>R-03 · {ablation.title}</span>
               <SourceBadge src="SIM" />
             </div>
             <div className="rpanel-body">
@@ -116,10 +130,10 @@ export function Research() {
             </div>
           </FadeUp>
 
-          {/* R-03 learning curves */}
+          {/* R-04 learning curves */}
           <FadeUp className="rpanel frame" delay={0.08}>
             <div className="frame-head">
-              <span>R-03 · {curves.title}</span>
+              <span>R-04 · {curves.title}</span>
               <SourceBadge src="SIM" />
             </div>
             <div className="rpanel-body">
@@ -132,11 +146,11 @@ export function Research() {
           </FadeUp>
         </div>
 
-        {/* R-04 feeds */}
+        {/* R-05 feeds */}
         <FadeUp className="rpanel frame">
           <div className="frame-head">
-            <span>R-04 · 실험 영상 피드</span>
-            <span className="mono">3 CHANNELS</span>
+            <span>R-05 · 실험 영상 피드</span>
+            <span className="mono">{videos.length + 1} CHANNELS</span>
           </div>
           <div className="rpanel-body feeds">
             {videos.map((v, i) => (
@@ -154,21 +168,21 @@ export function Research() {
             <figure className="feed">
               <div className="feed-screen feed-nosignal" aria-label="실물 실험 영상 없음">
                 <span className="feed-tag mono">
-                  CH3 · <SourceBadge src="REAL" />
+                  CH{videos.length + 1} · <SourceBadge src="REAL" />
                 </span>
                 <b className="mono">NO SIGNAL</b>
                 <small>실물 실험 영상은 아직 없습니다</small>
               </div>
-              <figcaption>상상부기 실물 제작 후 추가 (캡스톤 다음 학기)</figcaption>
+              <figcaption>상상부기 실물 · PlugBot 키트 · 실차 주행 후 추가</figcaption>
             </figure>
           </div>
         </FadeUp>
 
         <div className="rgrid">
-          {/* R-05 hypotheses */}
+          {/* R-06 hypotheses */}
           <FadeUp className="rpanel frame">
             <div className="frame-head">
-              <span>R-05 · 다음 실험 가설</span>
+              <span>R-06 · 다음 실험 가설</span>
               <span className="mono">예측 → 하나만 바꾸기 → 기록</span>
             </div>
             <ol className="hyp rpanel-body">
@@ -192,10 +206,10 @@ export function Research() {
             </ol>
           </FadeUp>
 
-          {/* R-06 failure log */}
+          {/* R-07 failure log */}
           <FadeUp className="rpanel frame" delay={0.08}>
             <div className="frame-head">
-              <span>R-06 · 실패 기록</span>
+              <span>R-07 · 실패 기록</span>
               <span className="mono">{failures.length} ENTRIES</span>
             </div>
             <ol className="fail rpanel-body">

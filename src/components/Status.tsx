@@ -23,5 +23,5 @@ export const SOURCE_HELP: Record<Source, string> = {
   ROLLOUT: "시뮬레이션 롤아웃을 기록한 원자료",
   BENCH: "실제 컴퓨터에서 잰 성능",
   DATASET: "공개 · 오프라인 데이터셋 평가",
-  REAL: "실물 로봇 측정 — 아직 없음",
+  REAL: "실물 측정 (줄자 · 사진) — 로봇 실험은 아직 없음",
 };

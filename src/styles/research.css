@@ -474,7 +474,7 @@
 /* ── feeds ── */
 .feeds {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 12px;
 }
 
@@ -682,7 +682,269 @@
   margin: 0;
 }
 
+/* ── plugbot ── */
+.pb {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 28px;
+  margin-top: 14px;
+}
+
+.pb-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  margin-bottom: 12px;
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+.pb-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.pb-legend i {
+  width: 14px;
+  height: 3px;
+  border-radius: 2px;
+}
+
+.pb-plot {
+  position: relative;
+  margin-left: 40px;
+  aspect-ratio: 600 / 280;
+}
+
+.pb-yaxis {
+  position: absolute;
+  left: -40px;
+  top: 0;
+  bottom: 0;
+  width: 34px;
+}
+
+.pb-yaxis span {
+  position: absolute;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 10px;
+  color: var(--text-3);
+}
+
+.pb-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.pb-grid {
+  stroke: rgba(255, 255, 255, 0.06);
+}
+
+.pb-cursor {
+  stroke: rgba(255, 255, 255, 0.3);
+  stroke-dasharray: 3 4;
+}
+
+.pb-line {
+  fill: none;
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.pb-end {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.pb-readout {
+  position: absolute;
+  top: 8px;
+  transform: translateX(12px);
+  display: grid;
+  gap: 3px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: rgba(11, 13, 12, 0.92);
+  border: 1px solid var(--line-2);
+  font-size: 11px;
+  color: var(--text-2);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.pb-readout[data-flip] {
+  transform: translateX(calc(-100% - 12px));
+}
+
+.pb-readout b {
+  color: var(--text);
+}
+
+.pb-readout span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pb-readout i {
+  width: 8px;
+  height: 2px;
+}
+
+.pb-x {
+  position: relative;
+  height: 34px;
+  margin: 6px 0 0 40px;
+  font-size: 10.5px;
+  color: var(--text-3);
+}
+
+.pb-x span {
+  position: absolute;
+  transform: translateX(-50%);
+}
+
+.pb-x em {
+  position: absolute;
+  left: 0;
+  top: 16px;
+  font-style: normal;
+  font-size: 10.5px;
+}
+
+.pb-detail {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+}
+
+.pb-gap {
+  margin-top: 16px;
+}
+
+.pb-force,
+.pb-outcomes {
+  display: grid;
+  gap: 8px;
+}
+
+.pb-force-row,
+.pb-out-row {
+  display: grid;
+  grid-template-columns: 74px 1fr 48px;
+  align-items: center;
+  gap: 10px;
+}
+
+.pb-k {
+  font-size: 11px;
+}
+
+.pb-v {
+  font-size: 11.5px;
+  text-align: right;
+  color: var(--text);
+}
+
+.pb-force-track,
+.pb-out-track {
+  position: relative;
+  height: 14px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.04);
+  overflow: hidden;
+}
+
+.pb-iqr {
+  position: absolute;
+  top: 3px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.pb-med {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 14px;
+  margin-left: -1px;
+  background: #fff;
+}
+
+.pb-force-axis {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 84px;
+  margin-right: 58px;
+  font-size: 10px;
+  color: var(--text-3);
+}
+
+.pb-cap {
+  font-size: 11.5px;
+  color: var(--text-3);
+}
+
+.pb-out {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transform-origin: left;
+}
+
+.pb-out[data-k="ok"],
+.pb-out-legend [data-k="ok"]::before {
+  background: var(--lime);
+}
+
+.pb-out[data-k="hull"],
+.pb-out-legend [data-k="hull"]::before {
+  background: var(--red);
+}
+
+.pb-out[data-k="rim"],
+.pb-out-legend [data-k="rim"]::before {
+  background: var(--amber);
+}
+
+.pb-out[data-k="timeout"],
+.pb-out-legend [data-k="timeout"]::before {
+  background: #8a9387;
+}
+
+.pb-out-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  font-size: 10.5px;
+  color: var(--text-3);
+}
+
+.pb-out-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pb-out-legend span::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
 @media (max-width: 1000px) {
+  .pb {
+    grid-template-columns: 1fr;
+  }
+  .feeds {
+    grid-template-columns: 1fr 1fr;
+  }
   .rgrid {
     grid-template-columns: 1fr;
   }
